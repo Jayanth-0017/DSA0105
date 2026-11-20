@@ -7,13 +7,9 @@ int& highestMark(int marks[], int size) {
         if (marks[i] > marks[highest]) highest = i;
     return marks[highest];
 }
-
-// DO NOT call this function: it returns a reference to a local variable.
-// Uncommenting the function may produce a compiler warning and using its
-// returned reference causes undefined behaviour.
 int& dangerousLocalReference() {
     int local = 99;
-    return local; // intentionally unsafe demonstration
+    return local; 
 }
 
 int main() {
