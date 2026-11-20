@@ -1,7 +1,5 @@
 #include <iostream>
 using namespace std;
-
-// Q1: Call by value, reference and pointer
 void concessionByValue(long long fee, int percent) {
     fee -= fee * percent / 100;
     cout << "Inside value function: " << fee << '\n';
@@ -13,7 +11,6 @@ void concessionByPointer(long long* fee, int percent) {
     if (fee != nullptr) *fee -= (*fee) * percent / 100;
 }
 
-// Return by reference: returns the larger variable itself.
 int& bigger(int& p, int& q) {
     return (p > q) ? p : q;
 }
@@ -31,9 +28,8 @@ int main() {
     cout << "After pointer: " << fee3 << '\n';
 
     int a = 1, b = 2, c = 3;
-    // The assignment below demonstrates the original prediction question.
     int x = a, y = b, z = c;
-    x += 10; y += 10; z += 10; // equivalent effects of change(x,y,&z)
+    x += 10; y += 10; z += 10; 
     cout << "Predict-output example: " << x - 10 << ' ' << y << ' ' << z << '\n';
     bigger(a, c) = 100;
     cout << "After bigger assignment: " << a << ' ' << c << '\n';
