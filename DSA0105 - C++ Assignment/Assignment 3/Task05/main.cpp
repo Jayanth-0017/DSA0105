@@ -13,12 +13,12 @@ public:
         if (totalSeconds < 0) totalSeconds = 0;
     }
 
-    Time& operator++() { // prefix
+    Time& operator++() { 
         ++totalSeconds;
         return *this;
     }
 
-    Time operator++(int) { // postfix
+    Time operator++(int) { 
         Time old = *this;
         ++totalSeconds;
         return old;
