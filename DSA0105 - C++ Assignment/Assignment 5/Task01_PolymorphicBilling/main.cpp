@@ -7,8 +7,6 @@
 #include <stdexcept>
 #include <algorithm>
 using namespace std;
-
-// Custom Exceptions
 class BillingError : public runtime_error {
 public:
     BillingError(const string& msg) : runtime_error(msg) {}
@@ -18,8 +16,6 @@ class ClaimError : public BillingError {
 public:
     ClaimError(const string& msg) : BillingError(msg) {}
 };
-
-// Abstract Bill Class
 class Bill {
 protected:
     string patient;
@@ -37,8 +33,6 @@ public:
              << fixed << setprecision(2) << total() << '\n';
     }
 };
-
-// OutPatient Bill
 class OutPatientBill : public Bill {
     double consultation, tests;
 
@@ -57,8 +51,6 @@ public:
         return "OP";
     }
 };
-
-// InPatient Bill
 class InPatientBill : public Bill {
     int days;
     double perDay, procedure, medicines;
@@ -80,8 +72,6 @@ public:
         return "IP";
     }
 };
-
-// DayCare Bill
 class DayCareBill : public Bill {
     double packagePrice;
 
@@ -100,8 +90,6 @@ public:
         return "DAYCARE";
     }
 };
-
-// Emergency Bill
 class EmergencyBill : public Bill {
     double baseCharge, hourlyRate;
     int hours;
@@ -124,7 +112,6 @@ public:
     }
 };
 
-// Abstract Payer Class
 class Payer {
 public:
     virtual ~Payer() {}
@@ -132,8 +119,6 @@ public:
     virtual double amountCovered(const Bill& bill) const = 0;
     virtual string name() const = 0;
 };
-
-// SelfPay Class
 class SelfPay : public Payer {
 public:
     double amountCovered(const Bill& bill) const override {
@@ -145,7 +130,6 @@ public:
     }
 };
 
-// Insurance Class
 class Insurance : public Payer {
     double coverLimit, copayPercent;
 
@@ -167,8 +151,6 @@ public:
         return "Insurance";
     }
 };
-
-// Government Scheme Class
 class GovernmentScheme : public Payer {
     double packageRate;
 
@@ -187,13 +169,9 @@ public:
         return "GovernmentScheme";
     }
 };
-
-// Main Function
 int main() {
     try {
         vector<unique_ptr<Bill> > bills;
-
-        // Creating bill objects using C++11
         bills.push_back(
             unique_ptr<Bill>(
                 new OutPatientBill("Ravi", 500, 1200)
@@ -217,8 +195,6 @@ int main() {
                 new EmergencyBill("Asha", 2000, 750, 4)
             )
         );
-
-        // Creating payer objects
         SelfPay self;
         Insurance insurance(50000, 10);
         GovernmentScheme scheme(20000);
