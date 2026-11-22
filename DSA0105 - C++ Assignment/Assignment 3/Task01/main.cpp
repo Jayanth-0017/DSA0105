@@ -15,13 +15,8 @@ private:
     }
 
 public:
-    // Default constructor
     Book() : Book("Untitled", "Unknown", 0) {}
-
-    // Donated book: title only (delegates to the full constructor)
     explicit Book(const string& t) : Book(t, "Unknown", 1) {}
-
-    // Parameterized constructor
     Book(const string& t, const string& a, int c)
         : title(t), author(a), copies(validateCopies(c)) {}
 
@@ -43,13 +38,6 @@ int main() {
         donated.print();
         cout << "Full book:\n";
         full.print();
-
-        // Uncomment to test invalid input:
-        // Book invalid("Bad Book", "Unknown", -2);
-
-        // explicit demonstration:
-        // void receiveBook(Book b) {}
-        // receiveBook("Direct conversion"); // fails if constructor is explicit
     } catch (const exception& e) {
         cerr << "Error: " << e.what() << '\n';
     }
