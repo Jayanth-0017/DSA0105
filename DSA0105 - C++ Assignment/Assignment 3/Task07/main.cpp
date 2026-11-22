@@ -57,8 +57,6 @@ public:
 
 int main() {
     try {
-        // Example circuit values at a chosen frequency:
-        // R = 10 ohm, XL = 5 ohm, XC = 20 ohm
         Complex resistor(10.0, 0.0);
         Complex inductor(0.0, 5.0);
         Complex capacitor(0.0, -20.0);
@@ -74,7 +72,7 @@ int main() {
         cout << "Parallel magnitude: " << parallel.magnitude() << " ohm\n";
 
         Complex zero;
-        Complex test = z1 / zero; // safely throws
+        Complex test = z1 / zero; 
         cout << test << '\n';
     } catch (const exception& e) {
         cout << "Error: " << e.what() << '\n';
