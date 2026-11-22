@@ -11,7 +11,7 @@ public:
 };
 
 double approve(double billed, double cover) {
-    // TODO 1 completed
+  
     if (billed < 0 || cover < 0)
         throw invalid_argument("negative amount");
     if (billed > cover)
@@ -23,7 +23,6 @@ double settle(double billed, double cover) {
     try {
         return approve(billed, cover);
     } catch (const ClaimError& e) {
-        // TODO 2 completed: log and rethrow the same exception
         cout << "audit: " << e.what() << '\n';
         throw;
     }
@@ -38,7 +37,7 @@ struct Tracked {
 };
 
 void validateTextAmount(const string& text) {
-    double amount = stod(text); // invalid_argument for text; out_of_range for huge value
+    double amount = stod(text); 
     if (amount < 0) throw invalid_argument("negative charge");
     cout << "valid amount " << amount << '\n';
 }
@@ -75,9 +74,6 @@ int main() {
     } catch (...) {
         cout << "top-level catch(...) handled failure\n";
     }
-
-    // A deliberately impossible allocation request. The implementation should
-    // reject this size with bad_alloc/bad_array_new_length; no huge memory is touched.
     try {
         size_t impossible = static_cast<size_t>(-1);
         unique_ptr<char[]> data(new char[impossible]);
