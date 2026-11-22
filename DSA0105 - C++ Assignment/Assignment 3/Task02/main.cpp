@@ -12,15 +12,11 @@ public:
     explicit Prescription(int count)
         : n(count < 0 ? 0 : count),
           medicines(n ? new string[n] : nullptr) {}
-
-    // Deep-copy constructor
     Prescription(const Prescription& other)
         : n(other.n), medicines(n ? new string[n] : nullptr) {
         for (int i = 0; i < n; ++i) medicines[i] = other.medicines[i];
         cout << "[copy constructor] copied " << n << " medicine(s)\n";
     }
-
-    // Deep-copy assignment operator; safe for self-assignment
     Prescription& operator=(const Prescription& other) {
         if (this != &other) {
             string* fresh = other.n ? new string[other.n] : nullptr;
@@ -57,19 +53,19 @@ int main() {
     p.set(0, "Paracetamol");
     p.set(1, "ORS");
 
-    Prescription q = p;             // copy constructor
+    Prescription q = p;             
     q.set(1, "Cetirizine");
 
     Prescription r(1);
-    r = p;                           // copy assignment
+    r = p;                        
     p.set(0, "Ibuprofen");
 
     cout << p.get(0) << ' ' << p.get(1) << " | "
          << q.get(0) << ' ' << q.get(1) << " | "
          << r.get(0) << ' ' << r.get(1) << '\n';
 
-    r = r;                           // self-assignment test
-    inspectByValue(p);               // makes a copy
-    inspectByReference(p);           // no copy
+    r = r;                          
+    inspectByValue(p);               
+    inspectByReference(p);           
     return 0;
 }
