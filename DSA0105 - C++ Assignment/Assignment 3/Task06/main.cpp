@@ -76,7 +76,7 @@ int main() {
     Text empty;
     cout << "Empty text: [" << empty << "]\n";
 
-    message = message; // self-assignment
+    message = message; 
     cout << "After self-assignment: " << message << '\n';
     return 0;
 }
